@@ -4,18 +4,65 @@
 <meta charset="utf-8">
 <title>Load data from an external GeoJSON file</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-<style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-</style>
+
+<link rel="stylesheet" href="style.css">
+
+
+
+
 </head>
 <body>
+<div class="intro">
+  <div class="logo-header">
+    <span class="logo">Lo</span><span class="logo">go.</span>
+  </div>
+</div>
+
+<header>
+  <h4>Logo.</h4>
+</header>
+
 <div id="map"></div>
  
+
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoidHdlYXRoZXJidXJuIiwiYSI6IllqeWNoS28ifQ.LX7mJDglVdZODqd25Z8aeg';
+let intro = document.querySelector('.intro');
+let logo = document.querySelector('.logo-header');
+let logoSpan = document.querySelectorAll('.logo');
+
+window.addEventListener('DOMContentLoaded', ()=>{
+
+  setTimeout(()=>{
+    logoSpan.forEach((span, idx)=>{
+      setTimeout(()=>{
+        span.classList.add('active');
+      }, (idx +1)*400)
+    });
+
+    setTimeout(()=>{
+      logoSpan.forEach((span, idx)=>{
+
+        setTimeout(()=>{
+          span.classList.remove('active');
+          span.classList.add('fade');
+        }, (idx+1)*50)
+      })
+    }, 4000);
+
+    setTimeout(()=>{
+      intro.style.top = '-100vh';
+    }, 5000)
+  })
+})
+
+
+
+
+//Map
+mapboxgl.accessToken = 'pk.eyJ1IjoidHdlYXRoZXJidXJuIiwiYSI6IllqeWNoS28ifQ.LX7mJDglVdZODqd25Z8aeg';
 const map = new mapboxgl.Map({
 container: 'map', // container ID
 style: 'mapbox://styles/mapbox/satellite-v9', // style URL
